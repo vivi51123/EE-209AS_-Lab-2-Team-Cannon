@@ -1,0 +1,45 @@
+<html>
+    <head>
+
+        <title>Team Cannon: Lab 2</title>
+
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+        <script>
+            var connection = new WebSocket('ws://'+location.hostname+':81/', ['arduino']);
+                connection.onopen = function(){
+                connection.send('Connect ' + new Date()); 
+            };
+            connection.onerror = function(error){
+                console.log('WebSocket Error ', error);
+            };
+            connection.onmessage = function(e){
+                console.log('Server: ', e.data);
+            };
+            function send_on(){
+                console.log('Button ON is pressed!'); 
+                connection.send('#O');
+            }
+            function send_off(){
+                console.log('Button OFF is pressed!'); 
+                connection.send('#F');
+            }
+        </script>
+    </head>
+
+    <body>
+        <div>
+            <h1> Group Cannon </h1>
+            <h2> Lab 2 </h2>
+        <br/>
+        <br/>
+        <br/>
+        <br/> 
+        <input type="button" name="b_on" value="RO" onclick="send_on();" />
+        <input type="button" name="b_off" value="BOT" onclick="send_off();" />
+        <br/>
+       </div>
+
+    </body>
+</html>

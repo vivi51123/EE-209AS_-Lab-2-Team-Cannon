@@ -1,0 +1,42 @@
+div {
+    color: #fff;
+    font-family: 'Courier New';
+    font-weight: 400;
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 12px;
+
+}
+
+h1 {
+    font-size: 70px;
+    font-weight: 400; 
+    margin: 0
+}
+
+h2 {
+    font-size: 60px;
+    font-weight: 400; 
+    margin: 0
+}
+
+
+body {
+    height: 100%;
+    background: linear-gradient(to bottom, #fcdb88,#d32106);
+}
+
+
+input[type=button] {
+    background: #d32106;
+    color: #ffffff;
+    font-size: 12px;
+    font-family: 'Courier New';
+    vertical-align: middle;
+    padding: 5;
+    border: 1px solid #e8e8e8;
+    background: none;
+}
