@@ -8,16 +8,13 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 #include <Hash.h>
-
+#include <Servo.h>
 #include "FS.h"
 
-//Vivi
-#include <Servo.h>
+int sensePin_pt = A0; //input
 
-int sensePin_pt = A0;
-
-int servoPin_1 = D1; 
-int servoPin_2 = D2; 
+int servoPin_1 = D1; //output
+int servoPin_2 = D2; //output
 
 Servo servo_1;
 Servo servo_2;
@@ -59,11 +56,11 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t lenght
 
                 if(payload[1] == 'O') {
                     digitalWrite(LED_PIN, LOW);
-                    whichSong = 0; 
+                    whichSong = 0; //Setting the flag -> Song 1
                 }
                 else {
                     digitalWrite(LED_PIN, HIGH);
-                    whichSong = 1; 
+                    whichSong = 1; //Setting the flag -> Song 2
                 }
             }
 
@@ -113,7 +110,6 @@ void prepareFile(){
 
         //Serial.println(css_code);
     }
-
 
 }
 
@@ -170,7 +166,6 @@ void setup() {
 
     Serial.printf("Server Start\n");
 
-    //Vivi
     //Sensor input pin 
     pinMode(sensePin_pt,INPUT);
 
@@ -187,10 +182,12 @@ void setup() {
 void loop() {
     webSocket.loop();
     server.handleClient();
-      //change the speed of the song by reading the value from the potentiometer
+    
+    //change the speed of the song by reading the value from the potentiometer
     int sense_pt = analogRead(sensePin_pt); 
     int delaySpeed = sense_pt + 200; 
     if (whichSong == 0) {  //song #1 whichSong == 0
+      
       Serial.println("Song 1");
       servo_1.write(135); 
       delay(200); 
@@ -211,6 +208,7 @@ void loop() {
       delay(delaySpeed); 
       
     } else { // song #2 whichSong == 1
+      
       Serial.println("Song 2");
       servo_1.write(135); 
       delay(200); 

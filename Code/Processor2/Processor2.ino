@@ -1,8 +1,7 @@
 #include <Servo.h>
 
-int sensePin_vb = D1;
-
-int servoPin_vb = D2;
+int sensePin_vb = D1; //input pin
+int servoPin_vb = D2; //output pin
 
 Servo servo_vb;
 
@@ -21,7 +20,7 @@ void loop() {
   Serial.println(sensedata_vb);
   
   if (sensedata_vb == 1) {
-    
+ 
     servo_vb.write(45);
     delay(200);
     servo_vb.write(135);
@@ -30,7 +29,7 @@ void loop() {
     
   } else { //sensedata_vb == 0
  
-    servo_vb.write(90);
+    servo_vb.write(90); //Staying at its initial position
 
   }
 }
